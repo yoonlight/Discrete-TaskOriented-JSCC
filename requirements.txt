@@ -1,0 +1,5 @@
+tensorboardX
+scipy
+munkres
+torch_tb_profiler
+tensorboard
