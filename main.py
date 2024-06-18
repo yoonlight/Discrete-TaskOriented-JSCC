@@ -5,6 +5,7 @@ from tensorboardX import SummaryWriter
 import torch.optim as optim 
 import torch.optim.lr_scheduler as lr_scheduler
 from torchvision.utils import make_grid
+from torch.nn.parallel import DataParallel as DP
 
 from model.DT_JSCC import DTJSCC_CIFAR10, DTJSCC_MNIST
 from model.losses import RIBLoss, VAELoss
@@ -19,7 +20,7 @@ def main(args):
     else:
         model = DTJSCC_CIFAR10(args.channels, args.latent_d, args.num_classes,
                          num_embeddings=args.num_embeddings)
-
+    model = DP(model, device_ids=[0,1,2])
     model.to(args.device)
     
     optimizer = optim.AdamW(params=model.parameters(), lr=args.lr, weight_decay=1e-4)
