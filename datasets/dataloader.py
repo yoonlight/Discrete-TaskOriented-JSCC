@@ -4,8 +4,8 @@ import os
 
 from .transform import simple_transform_mnist, simple_transform, cencrop_teransform, imagenet_transform, simple_transform_test, imagenet_transform_aug
 
-root = r'datasets/'
-# root = r'/public/home/xiesj/project/data/'
+root = 'data/'
+
 def get_data(data_set, batch_size, shuffle=True, n_worker=0, train = True, add_noise=0):
     if data_set == 'MNIST':
         tran = simple_transform_mnist()
